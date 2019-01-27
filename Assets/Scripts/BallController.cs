@@ -108,7 +108,7 @@ public class BallController : MonoBehaviour {
     private void ResetBallPosition()
     {
         rb2d.transform.localPosition = Vector2.zero;
-        ballForce = 2;
+        ballForce = 4;
         LaunchBallInRandomDirection();
 
     }
