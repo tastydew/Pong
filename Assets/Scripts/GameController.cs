@@ -14,38 +14,46 @@ public class GameController : MonoBehaviour {
     public Button playAgainButton;
     public Button quitButton;
 
-    private void Start()
+    void Start()
     {
         playAgainButton.onClick.AddListener(PlayAgain);
         quitButton.onClick.AddListener(QuitGame);
     }
 
-    private void QuitGame()
+    void QuitGame()
     {
         Application.Quit();
     }
 
-    private void PlayAgain()
+    void EnableUIButtons()
     {
-        SceneManager.LoadSceneAsync(0);
-        playerOneScore = 0;
-        playerTwoScore = 0;
+        playAgainButton.gameObject.SetActive(true);
+        quitButton.gameObject.SetActive(true);
+    }
+
+    void DisableUIButtons()
+    {
         playAgainButton.gameObject.SetActive(false);
         quitButton.gameObject.SetActive(false);
     }
 
-    private void Update()
+    void PlayAgain()
+    {
+        SceneManager.LoadSceneAsync(0);
+        playerOneScore = 0;
+        playerTwoScore = 0;
+        DisableUIButtons();
+    }
+
+    void Update()
     {
         if (playerOneScore == 10 || playerTwoScore == 10)
         {
-            playAgainButton.gameObject.SetActive(true);
-            quitButton.gameObject.SetActive(true);
-
+            EnableUIButtons();
         }
         else
         {
-            playAgainButton.gameObject.SetActive(false);
-            quitButton.gameObject.SetActive(false);
+            DisableUIButtons();
         }
     }
 
